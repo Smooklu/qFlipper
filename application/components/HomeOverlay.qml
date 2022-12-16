@@ -135,23 +135,26 @@ AbstractOverlay {
         }
     }
 
-    TextLabel {
+    ComboBox {
         id: nameLabel
-        x: centerX + centerOffset - width - 4
-        y: 19
+        x: centerX + centerOffset - width + 16
+        y: 12
+        width: 175
 
-        color: Theme.color.lightorange2
+        //color: Theme.color.lightorange2
 
         font.family: "Born2bSportyV2"
-        font.pixelSize: 48
+        font.pixelSize: 36
+        model: [ "Pakela", "Tr3pp1", "Akinator" ]
 
-        capitalized: false
-        text: deviceInfo ? deviceInfo.name : text
+        //capitalized: false
+        //text: deviceInfo ? deviceInfo.name : text
     }
 
     ColumnLayout {
-        x: centerX + centerOffset + 4
-        anchors.bottom: nameLabel.baseline
+        x: centerX + centerOffset + 32
+        y: 16
+        //anchors.bottom: nameLabel.baseline
 
         TransparentLabel {
             id: connectionLabel
