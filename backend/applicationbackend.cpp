@@ -93,6 +93,11 @@ FlipperZero *ApplicationBackend::device() const
     return m_deviceRegistry->currentDevice();
 }
 
+QVector<FlipperZero*> ApplicationBackend::getDevices() const
+{
+    return m_deviceRegistry->getDevices();
+}
+
 DeviceState *ApplicationBackend::deviceState() const
 {
     if(device()) {
@@ -417,6 +422,30 @@ void ApplicationBackend::registerMetaTypes()
     qRegisterMetaType<Flipper::Zero::AssetManifest::FileInfo>();
 
     qRegisterMetaType<QAbstractListModel*>();
+}
+
+QVariant ApplicationBackend::data(const QModelIndex &index, int role) const
+{
+    const auto &item = m_modelData[index.row()];
+
+    switch(role) {
+    case FlipperName:
+        return item.DeviceInfo.name;
+    case FlipperDevice:
+        return item;
+    default:
+        return QVariant();
+    }
+}
+
+QHash<int, QByteArray> ApplicationBackend::roleNames() const
+{
+    static const QHash<int, QByteArray> roles = {
+        { FlipperName, QByteArrayLiteral("flipperName") },
+        { FlipperDevice, QByteArrayLiteral("flipperDevice") },
+    };
+
+    return roles;
 }
 
 #if QT_VERSION < 0x060000

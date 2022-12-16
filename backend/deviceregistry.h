@@ -24,6 +24,8 @@ public:
     void setBackendLogLevel(int logLevel);
 
     FlipperZero *currentDevice() const;
+    FlipperZero *getSpecificDevice(int index) const;
+    QVector<FlipperZero*> getDevices() const;
     int deviceCount() const;
 
     BackendError::ErrorType error() const;

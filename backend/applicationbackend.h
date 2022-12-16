@@ -97,6 +97,7 @@ public:
     BackendError::ErrorType errorType() const;
 
     Flipper::FlipperZero *device() const;
+    QVector<FlipperZero*> *getDevices() const;
     Flipper::Zero::DeviceState *deviceState() const;
 
     Flipper::DeviceRegistry *deviceRegistry() const;
@@ -107,6 +108,12 @@ public:
 
     FirmwareUpdateState firmwareUpdateState() const;
     QAbstractListModel *firmwareUpdateModel() const;
+    
+    // QAbstractListModel API
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    QHash<int, QByteArray> roleNames() const override;
+
     const Flipper::Updates::VersionInfo latestFirmwareVersion() const;
 
     // TODO: Replace it with a state

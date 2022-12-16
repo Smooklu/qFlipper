@@ -45,6 +45,16 @@ FlipperZero *DeviceRegistry::currentDevice() const
     return m_devices.isEmpty() ? nullptr : m_devices.first();
 }
 
+FlipperZero *DeviceRegistry::getSpecificDevice(int index) const
+{
+    return m_devices[index];
+}
+
+QVector<FlipperZero*> DeviceRegistry::getDevices() const
+{
+    return m_devices;
+}
+
 int DeviceRegistry::deviceCount() const
 {
     return m_devices.size();
